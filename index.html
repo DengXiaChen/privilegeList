@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width = device-width,initial-scale = 1.0,maximum-scale = 1,minimum-scale = 1,user-scalable = no">
+	<title>优惠店铺列表</title>
+	<link rel="stylesheet" href="lib/jquery.raty.css">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+	<div class="reload">刷新</div>
+	<div id="iscrollWrapper">
+		<div>
+			<ul class="listShow">
+			</ul>
+			<div class="loadPage">上拉加载</div>
+		</div>
+	</div>
+
+	<script id="itemTmpl" type="text/template">
+		{{ for(var i=0,len=it.length;i<len;i++){ }}
+			<li class="item">
+				<a href="#" class="shopLink">
+					<span class="left">
+						<img src={{=it[i].shopLogo}} class="shopLogo">
+					</span>
+					<span class="right">
+						<div class="shopNameBox">
+							<span class="shopName">{{=it[i].shopName}}
+							{{ for(var j=0,len1=it[i].shopTags.length;j<len1;j++){ }}
+							<img src={{=it[i].shopTags[j]}} class="shopTags">
+							{{ } }}
+							</span>
+						</div>
+						<div class="shopPointBox">
+							<span class="avgAppPoint"></span>
+							<span class="avgAppPointNum">{{=it[i].avgAppPoint}}</span>
+							{{ if (it[i].isInBusiness == 1) { }}
+							<span class="isInBusiness">营业中</span>
+							{{ }else if(it[i].isInvoice == 1){ }}
+							<span class="isInvoice">可预订</span>
+							{{ }else{ }}
+							<span class="isOutOfSide">休息中</span>
+							{{ } }}
+						</div>
+						<div class="shopOtherBox">
+							<span class="salesInWeek">近期销售{{=it[i].salesInWeek}}份</span>
+							<span class="deliveryBeginMoney">￥{{=it[i].deliveryBeginMoney}}起送</span>
+							<span class="deliveryTime">{{=it[i].deliveryTime}}分钟</span>
+						</div>
+					</span>
+				</a>
+			</li>
+		{{ } }}
+	</script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/doT.js"></script>
+	<script src="lib/jquery.raty.js"></script>
+	<script src="js/main1.js"></script>
+</body>
+</html>
